@@ -11,6 +11,9 @@
 
 set $mod Mod4
 
+bindsym $mod+Shift+h exec chromium
+bindsym Pointer_Button2 exec chromium
+
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
@@ -90,16 +93,16 @@ bindsym Control+9 workspace 9
 bindsym Control+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace 1
-bindsym $mod+Shift+at move container to workspace 2
-bindsym $mod+Shift+numbersign move container to workspace 3
-bindsym $mod+Shift+dollar move container to workspace 4
-bindsym $mod+Shift+percent move container to workspace 5
-bindsym $mod+Shift+asciicircum move container to workspace 6
-bindsym $mod+Shift+ampersand move container to workspace 7
-bindsym $mod+Shift+asterisk move container to workspace 8
-bindsym $mod+Shift+parenleft move container to workspace 9
-bindsym $mod+Shift+parenright move container to workspace 10
+bindsym $mod+Shift+exclam move workspace 1
+bindsym $mod+Shift+at move workspace 2
+bindsym $mod+Shift+numbersign move workspace 3
+bindsym $mod+Shift+dollar move workspace 4
+bindsym $mod+Shift+percent move workspace 5
+bindsym $mod+Shift+asciicircum move workspace 6
+bindsym $mod+Shift+ampersand move workspace 7
+bindsym $mod+Shift+asterisk move workspace 8
+bindsym $mod+Shift+parenleft move workspace 9
+bindsym $mod+Shift+parenright move workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
@@ -112,24 +115,38 @@ bindsym $mod+Shift+E exit
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        # They resize the border in the direction you pressed, e.g.
+        # when pressing left, the window is resized so that it has
+        # more space on its left
+
+bindsym j resize shrink left 10 px or 10 ppt
+bindsym Shift+J resize grow   left 10 px or 10 ppt
+
+bindsym k resize shrink down 10 px or 10 ppt
+bindsym Shift+K resize grow   down 10 px or 10 ppt
+
+bindsym l resize shrink up 10 px or 10 ppt
+bindsym Shift+L resize grow   up 10 px or 10 ppt
+
+bindsym semicolon resize shrink right 10 px or 10 ppt
+bindsym Shift+colon resize grow   right 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym 113 resize shrink width 10 px or 10 ppt
-        bindsym 116 resize grow height 10 px or 10 ppt
-        bindsym 111 resize shrink height 10 px or 10 ppt
-        bindsym 114 resize grow width 10 px or 10 ppt
+bindsym Left resize shrink left 10 px or 10 ppt
+bindsym Shift+Left resize grow   left 10 px or 10 ppt
+
+bindsym Down resize shrink down 10 px or 10 ppt
+bindsym Shift+Down resize grow   down 10 px or 10 ppt
+
+bindsym Up resize shrink up 10 px or 10 ppt
+bindsym Shift+Up resize grow   up 10 px or 10 ppt
+
+bindsym Right resize shrink right 10 px or 10 ppt
+bindsym Shift+Right resize grow   right 10 px or 10 ppt
 
         # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -139,12 +156,3 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
-
-assign [class="Xchat"] 3
-assign [class="Qupzilla"] 4
-
-exec sudo vpnc
-exec lxterminal
-exec qupzilla
-exec xchat
-
